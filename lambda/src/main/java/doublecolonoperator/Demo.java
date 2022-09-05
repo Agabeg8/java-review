@@ -1,5 +1,6 @@
 package doublecolonoperator;
 
+import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 
@@ -37,7 +38,9 @@ public class Demo {
         display2.accept(90);
 
 
+        BiFunction<MyClass,Integer, Double> v2 = MyClass :: method;
 
+        BiFunction<String, String, String> v3 = String :: concat;
 
     }
 }

@@ -53,9 +53,33 @@ public class JavCollectors {
         System.out.println(evenCount);
 
         //summingInt(ToIntFunction) : returns a Collector that produces the sum of a integer-valued func
+
+        System.out.println("========SUMMINGINT=======");
         Integer sum = DishData.getAll().stream()
                 .collect(Collectors.summingInt(Dish::getCalories));
         System.out.println(sum);
 
+        System.out.println("========AVERAGINGINT=======");
+        Double calorieAvg = DishData.getAll().stream()
+                .collect(Collectors.averagingInt(Dish::getCalories));
+        System.out.println(calorieAvg);
+
+        System.out.println("========JOINING=======");
+        List<String> courses = Arrays.asList("Java", "JS", "TS");
+        String str = courses.stream()
+                .collect(Collectors.joining("-"));
+        System.out.println(str);
+
+        System.out.println("========PARTIONINGBY=======");
+        Map<Boolean, List<Dish>> veggieDish = DishData.getAll().stream()
+                .collect(Collectors.partitioningBy(Dish::isVegetarian));
+        System.out.println(veggieDish);
+
+        System.out.println("========GROUPINGBY=======");
+
+        Map<Type, List<Dish>> dishType = DishData.getAll().stream()
+                .collect(Collectors.groupingBy(Dish::getType));
+
+        System.out.println(dishType);
     }
 }

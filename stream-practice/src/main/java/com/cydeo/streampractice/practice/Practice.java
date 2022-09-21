@@ -136,31 +136,39 @@ public class Practice {
 
         return employeeService.readAll().stream()
                 .map(Employee::getSalary)
-                .noneMatch(salary -> salary<1000);
+                .noneMatch(salary -> salary < 1000);
     }
 
     // Check if the salaries of all the employees in IT department are greater than 2000 (departmentName: IT)
     public static boolean checkIfThereIsAnySalaryGreaterThan2000InITDepartment() {
-        //TODO Implement the method
-        return false;
+        return employeeService.readAll().stream()
+                .filter(department -> department.getDepartment().equals("IT"))
+                .noneMatch(salary -> salary.getSalary()>2000);
+
     }
 
     // Display all the employees whose salary is less than 5000
     public static List<Employee> getAllEmployeesWithLessSalaryThan5000() {
-        //TODO Implement the method
-        return new ArrayList<>();
+        return employeeService.readAll().stream()
+                .filter(salary -> salary.getSalary()<5000)
+                .collect(Collectors.toList());
+
     }
 
     // Display all the employees whose salary is between 6000 and 7000
     public static List<Employee> getAllEmployeesSalaryBetween() {
-        //TODO Implement the method
-        return new ArrayList<>();
+        return employeeService.readAll().stream()
+                .filter(salary -> salary.getSalary() > 6000 && salary.getSalary() < 7000)
+                .collect(Collectors.toList());
     }
 
     // Display the salary of the employee Grant Douglas (lastName: Grant, firstName: Douglas)
     public static Long getGrantDouglasSalary() throws Exception {
-        //TODO Implement the method
-        return 1L;
+
+        return employeeService.readAll().stream()
+                .filter(employee -> employee.getLastName().equals("Grant") && employee.getFirstName().equals("Douglas"))
+                .findAny().get().getSalary();
+
     }
 
     // Display the maximum salary an employee gets

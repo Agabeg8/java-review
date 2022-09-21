@@ -210,8 +210,8 @@ public class Practice {
 
     // Display the employee(s) who gets the second maximum salary
     public static List<Employee> getSecondMaxSalaryEmployee() {
-        //TODO Implement the method
-        return new ArrayList<>();
+        return null;
+
     }
 
     // Display the minimum salary an employee gets

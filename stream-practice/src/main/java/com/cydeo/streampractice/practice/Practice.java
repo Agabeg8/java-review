@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Component
 public class Practice {
@@ -46,80 +47,88 @@ public class Practice {
 
     // Display all the countries
     public static List<Country> getAllCountries() {
-        //TODO Implement the method
-        return new ArrayList<>();
+        return countryService.readAll();
+
     }
 
     // Display all the departments
     public static List<Department> getAllDepartments() {
-        //TODO Implement the method
-        return new ArrayList<>();
+
+        return departmentService.readAll();
     }
 
     // Display all the jobs
     public static List<Job> getAllJobs() {
-        //TODO Implement the method
-        return new ArrayList<>();
+
+        return jobService.readAll();
     }
 
     // Display all the locations
     public static List<Location> getAllLocations() {
-        //TODO Implement the method
-        return new ArrayList<>();
+
+        return locationService.readAll();
     }
 
     // Display all the regions
     public static List<Region> getAllRegions() {
-        //TODO Implement the method
-        return new ArrayList<>();
+
+        return regionService.readAll();
     }
 
     // Display all the job histories
     public static List<JobHistory> getAllJobHistories() {
-        //TODO Implement the method
-        return new ArrayList<>();
+        return jobHistoryService.readAll();
     }
 
     // Display all the employees' first names
     public static List<String> getAllEmployeesFirstName() {
-        //TODO Implement the method
-        return new ArrayList<>();
+        return employeeService.readAll().stream()
+                .map(Employee::getFirstName)
+                .collect(Collectors.toList());
     }
 
     // Display all the countries' names
     public static List<String> getAllCountryNames() {
-        //TODO Implement the method
-        return new ArrayList<>();
+        return countryService.readAll().stream()
+                .map(Country::getCountryName)
+                .collect(Collectors.toList());
     }
 
     // Display all the departments' managers' first names
     public static List<String> getAllDepartmentManagerFirstNames() {
-        //TODO Implement the method
-        return new ArrayList<>();
+
+        return departmentService.readAll().stream()
+                .map(department -> department.getManager().getFirstName())
+                .collect(Collectors.toList());
     }
 
     // Display all the departments where manager name of the department is 'Steven'
     public static List<Department> getAllDepartmentsWhichManagerFirstNameIsSteven() {
-        //TODO Implement the method
-        return new ArrayList<>();
+        return departmentService.readAll().stream()
+                .filter(department -> department.getManager().getFirstName().equals("Steven"))
+                .collect(Collectors.toList());
     }
 
     // Display all the departments where postal code of the location of the department is '98199'
     public static List<Department> getAllDepartmentsWhereLocationPostalCodeIs98199() {
-        //TODO Implement the method
-        return new ArrayList<>();
+        return departmentService.readAll().stream()
+                .filter(department -> department.getLocation().getPostalCode().equals("98199"))
+                .collect(Collectors.toList());
     }
 
     // Display the region of the IT department
     public static Region getRegionOfITDepartment() throws Exception {
-        //TODO Implement the method
-        return new Region();
+        return departmentService.readAll().stream()
+                .filter(department -> department.getDepartmentName().equals("IT"))
+                .map(department -> department.getLocation().getCountry().getRegion())
+                .findAny().get();
     }
 
     // Display all the departments where the region of department is 'Europe'
     public static List<Department> getAllDepartmentsWhereRegionOfCountryIsEurope() {
-        //TODO Implement the method
-        return new ArrayList<>();
+        return departmentService.readAll().stream()
+                .filter(department -> department.getLocation().getCountry().getRegion().getRegionName().equals("Europe"))
+                .collect(Collectors.toList());
     }
 
     // Display if there is any employee with salary less than 1000. If there is none, the method should return true

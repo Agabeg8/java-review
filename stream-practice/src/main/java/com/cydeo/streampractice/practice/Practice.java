@@ -184,14 +184,17 @@ public class Practice {
 
     // Display the max salary employee's job
     public static Job getMaxSalaryEmployeeJob() throws Exception {
-        //TODO Implement the method
-        return new Job();
+        return employeeService.readAll().stream()
+                .max(Comparator.comparing(Employee::getSalary)).stream()
+                .map(Employee::getJob).findFirst().get();
     }
 
     // Display the max salary in Americas Region
     public static Long getMaxSalaryInAmericasRegion() throws Exception {
-        //TODO Implement the method
-        return 1L;
+        return employeeService.readAll().stream()
+                .filter(region -> region.getDepartment().getLocation().getCountry().getRegion().getRegionName().equals("Americas"))
+                .max(Comparator.comparing(Employee::getSalary)).get().getSalary();
+
     }
 
     // Display the second maximum salary an employee gets

@@ -199,8 +199,13 @@ public class Practice {
 
     // Display the second maximum salary an employee gets
     public static Long getSecondMaxSalary() throws Exception {
-        //TODO Implement the method
-        return 1L;
+        return employeeService.readAll().stream()
+                .map(Employee::getSalary)
+                .distinct()
+                .sorted(Comparator.reverseOrder())
+                .skip(1)
+                .reduce(Long::max)
+                .orElseThrow();
     }
 
     // Display the employee(s) who gets the second maximum salary

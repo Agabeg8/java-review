@@ -133,8 +133,10 @@ public class Practice {
 
     // Display if there is any employee with salary less than 1000. If there is none, the method should return true
     public static boolean checkIfThereIsNoSalaryLessThan1000() {
-        //TODO Implement the method
-        return false;
+
+        return employeeService.readAll().stream()
+                .map(Employee::getSalary)
+                .noneMatch(salary -> salary<1000);
     }
 
     // Check if the salaries of all the employees in IT department are greater than 2000 (departmentName: IT)

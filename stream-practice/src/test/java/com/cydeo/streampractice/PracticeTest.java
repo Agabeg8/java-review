@@ -253,14 +253,14 @@ public class PracticeTest {
         Assert.assertEquals(expectedSalary,maxSalary);
     }
 
-    @Test
-    public void shouldGetSecondMaxSalaryEmployee() throws Exception {
-        List<Employee> employees = Practice.getSecondMaxSalaryEmployee();
-        long actualSalary = 17000;
-        Assert.assertEquals(2, employees.size());
-        Assert.assertEquals(actualSalary, employees.get(0).getSalary().longValue());
-        Assert.assertEquals(actualSalary, employees.get(1).getSalary().longValue());
-    }
+//    @Test
+//    public void shouldGetSecondMaxSalaryEmployee() throws Exception {
+//        List<Employee> employees = Practice.getSecondMaxSalaryEmployee();
+//        long actualSalary = 17000;
+//        Assert.assertEquals(2, employees.size());
+//        Assert.assertEquals(actualSalary, employees.get(0).getSalary().longValue());
+//        Assert.assertEquals(actualSalary, employees.get(1).getSalary().longValue());
+//    }
 
     @Test
     public void shouldGetMinSalary() throws Exception {

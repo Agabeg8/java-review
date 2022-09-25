@@ -238,8 +238,13 @@ public class Practice {
 
     // Display the employee(s) who gets the second minimum salary
     public static List<Employee> getSecondMinSalaryEmployee() {
-        //TODO Implement the method
-        return new ArrayList<>();
+        return employeeService.readAll().stream()
+                .filter(i->{try {
+                    return i.getSalary().equals(getSecondMinSalary());
+                }catch (Exception e){
+                    throw new RuntimeException(e);
+                }
+                }).collect(Collectors.toList());
     }
 
     // Display the average salary of the employees

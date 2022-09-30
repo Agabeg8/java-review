@@ -257,20 +257,21 @@ public class Practice {
 
     // Display all the employees who are making more than average salary
     public static List<Employee> getAllEmployeesAboveAverage() {
-        //TODO Implement the method
-        return new ArrayList<>();
+        return employeeService.readAll().stream()
+                .filter(employee -> employee.getSalary() > getAverageSalary()).collect(Collectors.toList());
     }
 
     // Display all the employees who are making less than average salary
     public static List<Employee> getAllEmployeesBelowAverage() {
-        //TODO Implement the method
-        return new ArrayList<>();
+        return employeeService.readAll().stream()
+                .filter(employee -> employee.getSalary() < getAverageSalary())
+                .collect(Collectors.toList());
     }
 
     // Display all the employees separated based on their department id number
     public static Map<Long, List<Employee>> getAllEmployeesForEachDepartment() {
-        //TODO Implement the method
-        return new HashMap<>();
+        return employeeService.readAll().stream()
+                .collect(Collectors.groupingBy(dep -> dep.getDepartment().getId()));
     }
 
     // Display the total number of the departments

@@ -307,7 +307,7 @@ public class Practice {
     // Display all the job histories where the start date is after 01.01.2005
     public static List<JobHistory> getAllJobHistoriesStartDateAfterFirstDayOfJanuary2005() {
         return jobHistoryService.readAll().stream()
-                .filter(f-> f.getStartDate().isAfter(LocalDate.of(2005,01,01)))
+                .filter(f-> f.getStartDate().isAfter(LocalDate.of(2006,01,01)))
                 .collect(Collectors.toList());
     }
 

@@ -249,8 +249,10 @@ public class Practice {
 
     // Display the average salary of the employees
     public static Double getAverageSalary() {
-        //TODO Implement the method
-        return 1d;
+
+        return employeeService.readAll().stream()
+                .mapToDouble(Employee::getSalary).average().orElse(0.0);
+
     }
 
     // Display all the employees who are making more than average salary

@@ -291,11 +291,11 @@ public class Practice {
     }
 
 //     Display all the job histories in ascending order by start date fad
-    public static List<JobHistory> getAllJobHistoriesInAscendingOrder() {
-        return jobHistoryService.readAll().stream()
-                .sorted(Comparator.comparing(JobHistory::getStartDate))
-                .collect(Collectors.toList());
-    }
+//    public static List<JobHistory> getAllJobHistoriesInAscendingOrder() {
+//        return jobHistoryService.readAll().stream()
+//                .sorted(Comparator.comparing(JobHistory::getStartDate))
+//                .collect(Collectors.toList());
+//    }
 
     // Display all the job histories in descending order by start date
     public static List<JobHistory> getAllJobHistoriesInDescendingOrder() {

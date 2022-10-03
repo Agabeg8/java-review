@@ -313,20 +313,29 @@ public class Practice {
 
     // Display all the job histories where the end date is 31.12.2007 and the job title of job is 'Programmer'
     public static List<JobHistory> getAllJobHistoriesEndDateIsLastDayOfDecember2007AndJobTitleIsProgrammer() {
-        //TODO Implement the method
-        return new ArrayList<>();
+        return jobHistoryService.readAll().stream()
+                .filter(f -> f.getEndDate().equals(LocalDate.of(2007,12,31)))
+                .filter(f -> f.getJob().getJobTitle().equals("Programmer"))
+                .collect(Collectors.toList());
     }
 
     // Display the employee whose job history start date is 01.01.2007 and job history end date is 31.12.2007 and department's name is 'Shipping'
     public static Employee getEmployeeOfJobHistoryWhoseStartDateIsFirstDayOfJanuary2007AndEndDateIsLastDayOfDecember2007AndDepartmentNameIsShipping() throws Exception {
-        //TODO Implement the method
-        return new Employee();
+        return jobHistoryService.readAll().stream()
+                .filter(f -> f.getStartDate().equals(LocalDate.of(2007,01,01)))
+                .filter(f -> f.getEndDate().equals(LocalDate.of(2007,12,31)))
+                .filter(dep -> dep.getDepartment().getDepartmentName().equals("Shipping"))
+                .map(jobHistory -> jobHistory.getEmployee())
+                .findFirst().get();
+
+
     }
 
     // Display all the employees whose first name starts with 'A'
     public static List<Employee> getAllEmployeesFirstNameStartsWithA() {
-        //TODO Implement the method
-        return new ArrayList<>();
+        return employeeService.readAll().stream()
+                .filter(f -> f.getFirstName().startsWith("A"))
+                .collect(Collectors.toList());
     }
 
     // Display all the employees whose job id contains 'IT'

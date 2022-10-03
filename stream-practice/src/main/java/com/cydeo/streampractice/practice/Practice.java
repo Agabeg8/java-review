@@ -363,8 +363,10 @@ public class Practice {
     // Display the initials of all the employees
     // Note: You can assume that there is no middle name
     public static List<String> getAllEmployeesInitials() {
-        //TODO Implement the method
-        return new ArrayList<>();
+        return employeeService.readAll().stream()
+                .map(employee -> employee.getFirstName().charAt(0) + "" + employee.getLastName().charAt(0))
+                .collect(Collectors.toList());
+
     }
 
     // Display the full names of all the employees

@@ -371,14 +371,18 @@ public class Practice {
 
     // Display the full names of all the employees
     public static List<String> getAllEmployeesFullNames() {
-        //TODO Implement the method
-        return new ArrayList<>();
+        return employeeService.readAll().stream()
+                .map(employee -> employee.getFirstName() + " " + employee.getLastName())
+                .collect(Collectors.toList());
+
+
     }
 
     // Display the length of the longest full name(s)
     public static Integer getLongestNameLength() throws Exception {
-        //TODO Implement the method
-        return 1;
+        return getAllEmployeesFullNames().stream()
+                .max(Comparator.comparing(String::length))
+                .get().length();
     }
 
     // Display the employee(s) with the longest full name(s)

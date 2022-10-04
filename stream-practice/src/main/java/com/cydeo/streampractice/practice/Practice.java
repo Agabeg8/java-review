@@ -387,20 +387,37 @@ public class Practice {
 
     // Display the employee(s) with the longest full name(s)
     public static List<Employee> getLongestNamedEmployee() {
-        //TODO Implement the method
-        return new ArrayList<>();
+        return employeeService.readAll().stream()
+                .filter(a -> {
+                    int fullNameLength = a.getFirstName().length() + a.getLastName().length() + 1;
+                    try {
+                        return fullNameLength == getLongestNameLength();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }).collect(Collectors.toList());
     }
 
     // Display all the employees whose department id is 90, 60, 100, 120, or 130
     public static List<Employee> getAllEmployeesDepartmentIdIs90or60or100or120or130() {
-        //TODO Implement the method
-        return new ArrayList<>();
+        return employeeService.readAll().stream()
+                .filter(employee -> employee.getDepartment().getId() == 90 ||
+                        employee.getDepartment().getId() == 60 ||
+                        employee.getDepartment().getId() == 100 ||
+                        employee.getDepartment().getId() == 120 ||
+                        employee.getDepartment().getId() == 130)
+                .collect(Collectors.toList());
     }
 
     // Display all the employees whose department id is NOT 90, 60, 100, 120, or 130
     public static List<Employee> getAllEmployeesDepartmentIdIsNot90or60or100or120or130() {
-        //TODO Implement the method
-        return new ArrayList<>();
+        return employeeService.readAll().stream()
+                .filter(employee -> !(employee.getDepartment().getId().equals(90L) ||
+                        employee.getDepartment().getId().equals(60L) ||
+                        employee.getDepartment().getId().equals(100L) ||
+                        employee.getDepartment().getId().equals(120L)||
+                        employee.getDepartment().getId().equals(130L)))
+                .collect(Collectors.toList());
     }
 
 }

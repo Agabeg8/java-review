@@ -402,10 +402,10 @@ public class Practice {
     public static List<Employee> getAllEmployeesDepartmentIdIs90or60or100or120or130() {
         return employeeService.readAll().stream()
                 .filter(employee -> employee.getDepartment().getId() == 90 ||
-                        employee.getDepartment().getId() == 60 ||
-                        employee.getDepartment().getId() == 100 ||
-                        employee.getDepartment().getId() == 120 ||
-                        employee.getDepartment().getId() == 130)
+                        employee.getDepartment().getId().equals(60L) ||
+                        employee.getDepartment().getId().equals(100L) ||
+                        employee.getDepartment().getId().equals(120L) ||
+                        employee.getDepartment().getId().equals(130L))
                 .collect(Collectors.toList());
     }
 
